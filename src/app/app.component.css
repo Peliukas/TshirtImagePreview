@@ -1,0 +1,63 @@
+.select-tshirt-column img {
+  height: 70px;
+  width: auto;
+}
+
+.image-preview {
+  width: 75%;
+  height: auto;
+}
+
+.image-preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: lightslategray;
+}
+
+.adjust-image-position-input {
+
+}
+
+.uploaded-overlay-image {
+  position: absolute;
+}
+
+.uploaded-overlay-image-input {
+  position: absolute;
+  opacity: 0;
+  z-index: 999;
+}
+
+.uploaded-overlay-image-container {
+  position: relative;
+}
+
+.uploaded-overlay-image-button {
+  background-color: rgba(0, 136, 203, 1);
+  border-width: 0;
+  border-color: #42EDCE;
+  border-radius: 5px;
+  font: normal normal normal 14px/1.4em helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif;
+  color: #FFFFFF;
+}
+
+.input-label {
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-size: 26px;
+  line-height: 1.2em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.product-price {
+  padding-top: 23px;
+  padding-bottom: 0;
+  font-size: 20px;
+}
+
+
