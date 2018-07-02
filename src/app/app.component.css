@@ -4,8 +4,12 @@
 }
 
 .image-preview {
-  width: 75%;
-  height: auto;
+  width: 100%;
+  height: 420px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
 }
 
 .image-preview-container {
@@ -21,6 +25,9 @@
 
 .uploaded-overlay-image {
   position: absolute;
+  left: 37%;
+  width: 25%;
+  height: auto;
 }
 
 .uploaded-overlay-image-input {
@@ -60,4 +67,38 @@
   font-size: 20px;
 }
 
+/*Card */
 
+.scene {
+  height: 420px;
+  width: 100%;
+  /*margin: 40px 0;*/
+  perspective: 600px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  backface-visibility: hidden;
+}
+
+.card__face--back {
+  transform: rotateY(180deg);
+}

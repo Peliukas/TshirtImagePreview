@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,32 +7,33 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public images: any[] = [
+  images: any[] = [
     '../assets/images/tshirts/blue.jpg',
     '../assets/images/tshirts/red.jpg',
     '../assets/images/tshirts/green.jpg'
   ];
 
-  public adjustImagePositionInput: number = 100;
-  public uploadedImage: any;
-  public fileName: string;
-  public selectedTshirtImage = '../assets/images/tshirts/blue.jpg';
+  adjustImagePositionInputFront: number = 100;
+  adjustImagePositionInputBack: number = 100;
+  uploadedImageFront: any;
+  fileNameFront: string;
+  uploadedImageBack: any;
+  fileNameBack: string;
+  selectedTshirtImage = '../assets/images/tshirts/blue.jpg';
+  imageFront: boolean = false;
 
   onFileChange(event) {
-    console.log(event.files);
     if (event.target.files[0]) {
-      this.fileName = event.target.files[0].name;
+      this.imageFront ? this.fileNameFront = event.target.files[0].name : this.fileNameBack = event.target.files[0].name;
       const reader = new FileReader();
       reader.onload = (event: any) => {
-        this.uploadedImage = event.target.result;
+        this.imageFront ? this.uploadedImageFront = event.target.result : this.uploadedImageBack = event.target.result;
       };
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
   public imagePositionChange(event: any) {
-
-    this.adjustImagePositionInput = parseInt(event.srcElement.value) + 100;
-    console.log(this.adjustImagePositionInput);
+    this.imageFront ? this.adjustImagePositionInputFront = parseInt(event.srcElement.value) + 100 : this.adjustImagePositionInputBack = parseInt(event.srcElement.value) + 100;
   }
 }

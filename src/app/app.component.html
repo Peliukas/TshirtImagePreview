@@ -1,18 +1,36 @@
 <div class="container">
   <div class="row">
     <div class="col-8 image-preview-container">
-      <img class="image-preview" src="{{selectedTshirtImage}}">
-      <img *ngIf="uploadedImage"
-           [src]="uploadedImage"
-           class="uploaded-overlay-image"
-           width="150"
-           height="100"
-           [ngStyle]="{'top.px': adjustImagePositionInput}">
+      <div class="scene scene--card">
+        <div class="card" [class.is-flipped]="!imageFront">
+          <div class="card__face card__face--front ">
+            <!--<img class="image-preview" src="{{selectedTshirtImage}}">-->
+            <div class="image-preview" [ngStyle]="{'background-image' : 'url(' + selectedTshirtImage + ')'}">
+              <img *ngIf="uploadedImageFront && imageFront"
+                   [src]="uploadedImageFront"
+                   class="uploaded-overlay-image"
+                   width="150"
+                   height="100"
+                   [ngStyle]="{'top.px': adjustImagePositionInputFront}">
+            </div>
+          </div>
+          <div class="card__face--back card__face">
+            <!--<img class="image-preview" src="{{selectedTshirtImage}}">-->
+            <div class="image-preview" [ngStyle]="{'background-image' : 'url(' + selectedTshirtImage + ')'}"></div>
+            <img *ngIf="uploadedImageBack && !imageFront"
+                 [src]="uploadedImageBack"
+                 class="uploaded-overlay-image"
+                 width="150"
+                 height="100"
+                 [ngStyle]="{'top.px': adjustImagePositionInputBack}">
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-4">
       <h2 class="product-name">Custom t-shirt</h2>
       <span class="product-price">kr. 150,00</span>
-      <div class="medium-margin-vertical">
+      <div class="medium-margin-vertical select-image-front" *ngIf="imageFront">
         <div class="input-label-container">
           <span class="input-label">Select image</span>
         </div>
@@ -22,17 +40,42 @@
             Upload image
           </button>
           <span>
-            {{fileName ? fileName : 'No file selected'}}
+            {{fileNameFront ? fileNameFront : 'No file selected'}}
           </span>
         </div>
-      </div>
-      <div class="medium-margin-vertical">
-        <div>
-          <span class="input-label">Adjust image position</span>
+        <div class="medium-margin-vertical">
+          <div>
+            <span class="input-label">Adjust image position</span>
+          </div>
+          <input (change)="imagePositionChange($event)" type="number" min="0" max="200"
+                 class="adjust-image-position-input input">
         </div>
-        <input (change)="imagePositionChange($event)" type="number" min="0" max="200"
-               class="adjust-image-position-input input">
       </div>
+      <div class="medium-margin-vertical select-image-back" *ngIf="!imageFront">
+        <div class="input-label-container">
+          <span class="input-label">Select image</span>
+        </div>
+        <div class="uploaded-overlay-image-container">
+          <input type="file" class="uploaded-overlay-image-input" (change)="onFileChange($event)">
+          <button class="uploaded-overlay-image-button">
+            Upload image
+          </button>
+          <span>
+            {{fileNameBack ? fileNameBack : 'No file selected'}}
+          </span>
+        </div>
+        <div class="medium-margin-vertical">
+          <div>
+            <span class="input-label">Adjust image position</span>
+          </div>
+          <input (change)="imagePositionChange($event)" type="number" min="0" max="200"
+                 class="adjust-image-position-input input">
+        </div>
+      </div>
+      <button (click)="imageFront = !imageFront">
+        Flip sides
+      </button>
+      <span>{{ imageFront ? 'FRONT' : 'BACK'}}</span>
       <div class="medium-margin-vertical">
         <div>
           <span class="input-label">Antal</span>
